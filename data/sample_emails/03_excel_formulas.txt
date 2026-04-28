@@ -1,0 +1,13 @@
+From: jenny.patel@company.com
+Subject: Excel formulas keep disappearing after save
+
+Hi,
+
+My Excel spreadsheet is doing something weird — every time I close and
+reopen the file, half my formulas come back as #REF errors. This is
+blocking me from finishing the budget report I owe to my manager
+before end of day.
+
+Any help would be appreciated.
+
+Jenny

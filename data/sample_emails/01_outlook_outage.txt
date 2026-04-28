@@ -1,0 +1,13 @@
+From: sarah.kim@company.com
+Subject: URGENT — Outlook crashing for entire team
+
+Hi IT,
+
+Outlook is crashing every time someone in our team opens it this morning.
+This is critical because we have a client demo today and nobody can read
+their emails. Production is down for our department.
+
+Please help ASAP.
+
+Thanks,
+Sarah

@@ -1,0 +1,12 @@
+From: dan.fisher@company.com
+Subject: Question about VPN access from home
+
+Hi IT,
+
+I'm starting to work from home a couple of days a week. Could you
+please send me the VPN setup instructions so I can install the client
+on my work laptop?
+
+No rush.
+
+Dan

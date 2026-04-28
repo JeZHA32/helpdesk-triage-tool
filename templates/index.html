@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Helpdesk Triage</title>
+  <style>
+    body { font-family: -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+           margin: 0; background: #f5f6f8; color: #1f2328; }
+    header { background: #1f4e78; color: #fff; padding: 16px 32px; }
+    header h1 { margin: 0; font-size: 20px; font-weight: 600; }
+    nav { padding: 12px 32px; background: #fff; border-bottom: 1px solid #e1e4e8;
+          display: flex; gap: 16px; align-items: center; }
+    nav a { color: #0969da; text-decoration: none; font-size: 14px; padding: 4px 8px; }
+    nav a.active { background: #ddf4ff; border-radius: 6px; }
+    nav .spacer { flex: 1; }
+    nav .submit-btn { background: #1f4e78; color: #fff; padding: 6px 12px;
+                      border-radius: 6px; }
+    main { padding: 24px 32px; }
+    table { width: 100%; border-collapse: collapse; background: #fff;
+            border: 1px solid #e1e4e8; border-radius: 6px; overflow: hidden; }
+    th { text-align: left; padding: 10px 14px; background: #f6f8fa;
+         font-size: 13px; color: #57606a; border-bottom: 1px solid #e1e4e8; }
+    td { padding: 10px 14px; font-size: 14px; border-bottom: 1px solid #f0f2f5; }
+    tr:last-child td { border-bottom: none; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px;
+            font-size: 12px; font-weight: 500; }
+    .p1 { background: #ffd7d5; color: #82071e; }
+    .p2 { background: #fff1c2; color: #7d4e00; }
+    .p3 { background: #d1f0d6; color: #1a5e2e; }
+    .p4 { background: #e6e8eb; color: #57606a; }
+    .status-open { color: #cf222e; font-weight: 500; }
+    .status-resolved { color: #1a5e2e; }
+    form.inline { display: inline; }
+    button { background: #1f4e78; color: #fff; border: 0; border-radius: 6px;
+             padding: 4px 10px; font-size: 12px; cursor: pointer; }
+    button:hover { background: #2c6494; }
+    .empty { padding: 32px; text-align: center; color: #57606a; }
+    .summary { color: #57606a; font-size: 13px; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Helpdesk Triage</h1>
+</header>
+<nav>
+  <a href="{{ url_for('index', status='OPEN') }}"
+     class="{{ 'active' if status_filter == 'OPEN' else '' }}">
+    Open ({{ counts.OPEN }})
+  </a>
+  <a href="{{ url_for('index', status='RESOLVED') }}"
+     class="{{ 'active' if status_filter == 'RESOLVED' else '' }}">
+    Resolved ({{ counts.RESOLVED }})
+  </a>
+  <a href="{{ url_for('index', status='ALL') }}"
+     class="{{ 'active' if status_filter == 'ALL' else '' }}">
+    All ({{ counts.ALL }})
+  </a>
+  <span class="spacer"></span>
+  <a href="{{ url_for('submit') }}" class="submit-btn">+ New ticket</a>
+</nav>
+<main>
+{% if tickets %}
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Priority</th>
+      <th>Category</th>
+      <th>Subject</th>
+      <th>From</th>
+      <th>Received</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in tickets %}
+    <tr>
+      <td>{{ t.id }}</td>
+      <td><span class="pill {{ t.priority|lower }}">{{ t.priority }}</span></td>
+      <td>{{ t.category }}</td>
+      <td>{{ t.subject }}</td>
+      <td>{{ t.sender }}</td>
+      <td>{{ t.received_at }}</td>
+      <td>
+        {% if t.status == 'OPEN' %}
+          <span class="status-open">Open</span>
+        {% else %}
+          <span class="status-resolved">Resolved</span>
+        {% endif %}
+      </td>
+      <td>
+        {% if t.status == 'OPEN' %}
+        <form class="inline" method="post"
+              action="{{ url_for('resolve', ticket_id=t.id) }}">
+          <button type="submit">Resolve</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p class="summary">{{ tickets|length }} ticket(s).
+   Sorted by priority, then most recent first.</p>
+{% else %}
+<div class="empty">No tickets in this view yet.
+  <a href="{{ url_for('submit') }}">Submit one</a>.</div>
+{% endif %}
+</main>
+</body>
+</html>
