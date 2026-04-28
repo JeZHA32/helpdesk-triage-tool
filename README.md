@@ -5,12 +5,6 @@ technician does when emails land in a shared mailbox: parse incoming
 messages, classify them by category, assign a priority, store them in
 a database, and surface them through a simple web UI.
 
-This is a learning project. It's the Python version of a problem I first
-hit at IKEA Logistics in 2017, where I was a Quality Coordinator drowning
-in incoming emails with photo attachments and wrote a VBA macro to batch
-them. After completing my Master of IT at La Trobe University, I rebuilt
-the same idea from scratch with the tools I learned during the degree.
-
 ![Screenshot of the helpdesk triage UI](screenshot.png)
 
 ## What it does
