@@ -121,10 +121,3 @@ tool would:
 
 These are the things I'd build in if I were doing this in a real role
 rather than as a portfolio project.
-
-## About me
-
-I'm Jerry — a Master of IT (Software Engineering) graduate from La Trobe
-University, based in Melbourne. I'm transitioning into IT support /
-junior development roles after five years of customer-facing work at
-Crown Resorts. [LinkedIn](https://www.linkedin.com/in/jerry-zhao-208b511ba/).
